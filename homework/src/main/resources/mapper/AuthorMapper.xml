@@ -10,7 +10,7 @@
     </insert>
 
     <select id="findById" resultType="Author">
-        select * from author where id=#{id}
+        select * from author where auid=#{id}
     </select>
 
     <select id="findAll" resultType="Author">
@@ -18,19 +18,37 @@
     </select>
 
     <delete id="deleteAuthor" parameterType="Author">
-        DELETE from author where id=#{id}
+        DELETE from author where auid=#{auid}
     </delete>
 
     <update id="updateAuthor" parameterType="Author">
-        update author set birthday=#{birthday},phone=#{phone},address=#{address} where id=#{id}
+        update author set birthday=#{birthday},phone=#{phone},address=#{address} where auid=#{auid}
     </update>
 
     <resultMap id="authorList1" type="Author">
-        <id property="id" column="ID"/>
+    <id property="auid" column="AUID"/>
+    <result property="name" column="NAME"/>
+    <result property="sex" column="SEX"/>
+</resultMap>
+
+    <resultMap id="authorList2" type="Author">
+        <id property="auid" column="AUID"/>
         <result property="name" column="NAME"/>
         <result property="sex" column="SEX"/>
+        <collection property="articles" ofType="Article">
+            <id property="arid" column="ARID"/>
+            <result property="title" column="TITLE"/>
+            <result property="content" column="CONTENT"/>
+        </collection>
+        <collection property="commts" ofType="article_commt">
+            <id property="id" column="ID"/>
+            <result property="commt" column="COMMT"/>
+        </collection>
     </resultMap>
-    <select id="findById2" resultMap="authorList1">
-        select id,name,sex from author where id=#{id}
+
+    <select id="findAll2" resultMap="authorList2">
+select auid,name,sex,arid,title,content,id,commt from author a LEFT JOIN article a1 ON a.auid=a1.au_id LEFT JOIN article_commt a2 ON a1.arid=a2.ar_id;
+
     </select>
+
 </mapper>

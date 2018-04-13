@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- AuthorDao的映射文件，AuthorDao的实现-->
+<mapper namespace="com.newer.dao.Article_commtMapper">
+    <resultMap id="article_commtList1" type="Article_commt">
+        <id property="id" column="ID"/>
+        <result property="au_id" column="AU_ID"/>
+        <result property="commt" column="COMMT"/>
+        <association property="article" javaType="Article"
+                     resultMap="com.newer.dao.ArticleMapper.articleList1">
+        </association>
+        <association property="author" javaType="Author"
+                     resultMap="com.newer.dao.AuthorDao.authorList1"/>
+
+    </resultMap>
+    <select id="findAll" resultMap="article_commtList1">
+        select a1.id,a1.au_id,commt,a.arid,title,content,publish_time,a2.auid,name from article_commt a1 LEFT JOIN article a ON a1.ar_id=a.arid LEFT JOIN author a2 ON a.au_id=a2.auid
+    </select>
+
+</mapper>

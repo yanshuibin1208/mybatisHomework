@@ -1,6 +1,7 @@
 package com.newer.test;
 
 import com.newer.dao.AuthorDao;
+import com.newer.pojo.Article;
 import com.newer.pojo.Author;
 import com.newer.util.SqlSessionUtil;
 import org.apache.ibatis.session.SqlSession;
@@ -75,13 +76,29 @@ public class AuthorTest {
     @Test
     public void updateAuthor(){
         Author author=new Author();
-        author.setId(4);
+        author.setAuid(4);
         author.setBirthday("1956-08-25");
         author.setAddress("北京");
         SqlSession sqlSession=SqlSessionUtil.getSqlSession();
         AuthorDao dao=sqlSession.getMapper(AuthorDao.class);
         System.out.println(dao.updateAuthor(author));
         sqlSession.commit();
+        sqlSession.close();
+    }
+
+    @Test
+    public void findAll2(){
+        SqlSession sqlSession=SqlSessionUtil.getSqlSession();
+        AuthorDao dao=sqlSession.getMapper(AuthorDao.class);
+        List<Author> authors=dao.findAll2();
+        authors.forEach((Author author)->{
+            System.out.println(author.getAuid()+":"+author.getName()+":"+author.getSex());
+            System.out.println("文章数："+author.getArticles().size());
+            System.out.println("评论数："+author.getCommts().size());
+            for (Article article:author.getArticles()){
+                System.out.println(article.getTitle());
+            }
+        });
         sqlSession.close();
     }
 }

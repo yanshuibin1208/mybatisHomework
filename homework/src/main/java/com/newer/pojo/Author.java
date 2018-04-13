@@ -1,21 +1,40 @@
 package com.newer.pojo;
 
+import java.util.List;
+
 public class Author {
-    private int id;
+    private int auid;
     private String name;
     private String sex;
     private String birthday;
     private String address;
     private String phone;
+    private List<Article>articles;
+    private List<Article_commt> commts;
 
-
-
-    public int getId() {
-        return id;
+    public List<Article> getArticles() {
+        return articles;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setArticles(List<Article> articles) {
+        this.articles = articles;
+    }
+
+    public List<Article_commt> getCommts() {
+        return commts;
+    }
+
+    public void setCommts(List<Article_commt> commts) {
+        this.commts = commts;
+    }
+
+
+    public int getAuid() {
+        return auid;
+    }
+
+    public void setAuid(int auid) {
+        this.auid = auid;
     }
 
     public String getName() {

@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface ArticleMapper {
     List<Article> findAll();
+
+    List<Article> findAll2();
 }

@@ -13,7 +13,8 @@ public interface AuthorDao {
 
     Author findById(int id);
 
-    Author findById2(int id);
-
     List<Author> findAll();
+    List<Author> findAll2();
+    List<Author> findAll3();
+
 }

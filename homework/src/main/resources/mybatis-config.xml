@@ -7,6 +7,7 @@
     <typeAliases>
         <typeAlias type="com.newer.pojo.Author" alias="Author" />
         <typeAlias type="com.newer.pojo.Article" alias="Article" />
+        <typeAlias type="com.newer.pojo.Article_commt" alias="Article_commt"/>
     </typeAliases>
 
     <!--配置连接方式-->
@@ -26,5 +27,6 @@
     <mappers>
         <mapper resource="mapper/AuthorMapper.xml"/>
         <mapper resource="mapper/ArticleMapper.xml"/>
+        <mapper resource="mapper/Article_commtMapper.xml"/>
     </mappers>
 </configuration>

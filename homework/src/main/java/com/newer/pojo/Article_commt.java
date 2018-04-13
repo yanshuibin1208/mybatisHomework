@@ -4,10 +4,19 @@ import java.sql.Date;
 
 public class Article_commt {
     private Integer id;
+    private Integer au_id;
     private String commt;
     private Date commt_time;
     private Article article;
     private Author author;
+
+    public Integer getAu_id() {
+        return au_id;
+    }
+
+    public void setAu_id(Integer au_id) {
+        this.au_id = au_id;
+    }
 
     public Integer getId() {
         return id;

@@ -14,7 +14,22 @@
 
     </resultMap>
     <select id="findAll" resultMap="articleList1">
-        select a.id,title,content,publish_time,a1.id,name,sex from article a LEFT JOIN author a1 ON a.au_id=a1.id
+        select a.arid,title,content,publish_time,a1.auid,name,sex from article a LEFT JOIN author a1 ON a.au_id=a1.auid
     </select>
 
+    <resultMap id="articleList2" type="Article">
+    <id property="arid" column="ARID"/>
+    <result property="title" column="TITLE"/>
+    <result property="content" column="CONTENT"/>
+    <result property="publish_time" column="PUBLISH_TIME"/>
+        <association property="articleAuthor" javaType="Author"
+                     resultMap="com.newer.dao.AuthorDao.authorList1" />
+    <collection property="commts" ofType="Article_commt">
+        <id property="id" column="ID"/>
+        <result property="commt" column="COMMT"/>
+    </collection>
+    </resultMap>
+<select id="findAll2" resultMap="articleList2">
+    select arid,title,content,publish_time,auid,name,sex,a2.id,commt from article a LEFT JOIN author a1 ON a.au_id=a1.auid LEFT JOIN article_commt a2 on a1.auid=a2.au_id
+</select>
 </mapper>
