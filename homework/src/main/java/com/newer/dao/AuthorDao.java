@@ -9,9 +9,9 @@ public interface AuthorDao {
 
     int updateAuthor(Author author);
 
-    int deleteAuthor(int id);
+    int deleteAuthor(int auid);
 
-    Author findById(int id);
+    Author findById(int auid);
 
     List<Author> findAll();
     List<Author> findAll2();

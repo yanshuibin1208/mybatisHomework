@@ -16,7 +16,7 @@
 
     </resultMap>
     <select id="findAll" resultMap="article_commtList1">
-        select a1.id,a1.au_id,commt,a.arid,title,content,publish_time,a2.auid,name from article_commt a1 LEFT JOIN article a ON a1.ar_id=a.arid LEFT JOIN author a2 ON a.au_id=a2.auid
+        select a1.id,a1.au_id,commt,arid,title,content,publish_time,auid,name from article_commt a1 LEFT JOIN article a ON a1.ar_id=a.arid LEFT JOIN author a2 ON a.au_id=a2.auid
     </select>
 
 </mapper>

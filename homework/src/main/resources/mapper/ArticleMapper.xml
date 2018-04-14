@@ -5,7 +5,7 @@
 <!-- AuthorDao的映射文件，AuthorDao的实现-->
 <mapper namespace="com.newer.dao.ArticleMapper">
     <resultMap id="articleList1" type="Article">
-        <id property="id" column="ID"/>
+        <id property="arid" column="ARID"/>
         <result property="title" column="TITLE"/>
         <result property="content" column="CONTENT"/>
         <result property="publish_time" column="PUBLISH_TIME"/>
