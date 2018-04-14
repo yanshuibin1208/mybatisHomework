@@ -30,6 +30,6 @@
     </collection>
     </resultMap>
 <select id="findAll2" resultMap="articleList2">
-    select arid,title,content,publish_time,auid,name,sex,a2.id,commt from article a LEFT JOIN author a1 ON a.au_id=a1.auid LEFT JOIN article_commt a2 on a1.auid=a2.au_id
+    select arid,title,content,publish_time,auid,name,sex,a2.id,commt from article a LEFT JOIN author a1 ON a.au_id=a1.auid LEFT JOIN article_commt a2 on a.arid=a2.au_id
 </select>
 </mapper>
