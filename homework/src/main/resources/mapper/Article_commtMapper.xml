@@ -10,13 +10,15 @@
         <result property="commt" column="COMMT"/>
         <association property="article" javaType="Article"
                      resultMap="com.newer.dao.ArticleMapper.articleList1">
+            <association property="author" javaType="Author"
+                         resultMap="com.newer.dao.AuthorDao.authorList1"/>
         </association>
         <association property="author" javaType="Author"
                      resultMap="com.newer.dao.AuthorDao.authorList1"/>
 
     </resultMap>
     <select id="findAll" resultMap="article_commtList1">
-        select a1.id,a1.au_id,commt,arid,title,content,publish_time,auid,name from article_commt a1 LEFT JOIN article a ON a1.ar_id=a.arid LEFT JOIN author a2 ON a.au_id=a2.auid
+        select a1.id,a1.au_id,commt,arid,title,content,publish_time,auid,name from article_commt a1 LEFT JOIN article a ON a1.ar_id=a.arid LEFT JOIN author a2 ON a1.au_id=a2.auid
     </select>
 
 </mapper>

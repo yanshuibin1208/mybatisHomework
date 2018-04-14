@@ -96,7 +96,7 @@ public class AuthorTest {
             System.out.println("文章数："+author.getArticles().size());
             System.out.println("评论数："+author.getCommts().size());
             for (Article article:author.getArticles()){
-                System.out.println(article.getTitle());
+                System.out.println(article.getTitle()+" 评论数："+article.getCommts().size());
             }
         });
         sqlSession.close();

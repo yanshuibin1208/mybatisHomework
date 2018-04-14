@@ -39,11 +39,16 @@
             <id property="arid" column="ARID"/>
             <result property="title" column="TITLE"/>
             <result property="content" column="CONTENT"/>
+            <collection property="commts" ofType="article_commt">
+                <id property="id" column="ID"/>
+                <result property="commt" column="COMMT"/>
+            </collection>
+
         </collection>
         <collection property="commts" ofType="article_commt">
-            <id property="id" column="ID"/>
-            <result property="commt" column="COMMT"/>
-        </collection>
+        <id property="id" column="ID"/>
+        <result property="commt" column="COMMT"/>
+    </collection>
     </resultMap>
 
     <select id="findAll2" resultMap="authorList2">
