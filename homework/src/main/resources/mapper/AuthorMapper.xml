@@ -43,7 +43,6 @@
                 <id property="id" column="ID"/>
                 <result property="commt" column="COMMT"/>
             </collection>
-
         </collection>
         <collection property="commts" ofType="article_commt">
         <id property="id" column="ID"/>
@@ -53,7 +52,6 @@
 
     <select id="findAll2" resultMap="authorList2">
 select auid,name,sex,arid,title,content,id,commt from author a LEFT JOIN article a1 ON a.auid=a1.au_id LEFT JOIN article_commt a2 ON a1.arid=a2.ar_id;
-
     </select>
 
 </mapper>

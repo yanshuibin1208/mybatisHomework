@@ -94,7 +94,7 @@ public class AuthorTest {
         authors.forEach((Author author)->{
             System.out.println(author.getAuid()+":"+author.getName()+":"+author.getSex());
             System.out.println("文章数："+author.getArticles().size());
-            System.out.println("评论数："+author.getCommts().size());
+            System.out.println("总评论数："+author.getCommts().size());
             for (Article article:author.getArticles()){
                 System.out.println(article.getTitle()+" 评论数："+article.getCommts().size());
             }

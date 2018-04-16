@@ -13,8 +13,11 @@
                      resultMap="com.newer.dao.AuthorDao.authorList1" />
 
     </resultMap>
+    <sql id="sql1">
+         select a.arid,title,content,publish_time,a1.auid,name,sex from article a LEFT JOIN author a1 ON a.au_id=a1.auid
+    </sql>
     <select id="findAll" resultMap="articleList1">
-        select a.arid,title,content,publish_time,a1.auid,name,sex from article a LEFT JOIN author a1 ON a.au_id=a1.auid
+        <include refid="sql1"/>
     </select>
 
     <resultMap id="articleList2" type="Article">
@@ -32,4 +35,55 @@
 <select id="findAll2" resultMap="articleList2">
     select arid,title,content,publish_time,auid,name,sex,a2.id,commt from article a LEFT JOIN author a1 ON a.au_id=a1.auid LEFT JOIN article_commt a2 on a.arid=a2.au_id
 </select>
+
+    <sql id="whereSql">
+       <trim prefix="WHERE" prefixOverrides="AND|OR">
+           <if test="title!=null and title!=''">
+               title like #{title}
+           </if>
+           <if test="articleAuthor!=null and articleAuthor.auId!=null">
+              AND au_id=#{articleAuthor.auid}
+           </if>
+           <if test="begintime!=null and endTime!=null">
+               AND publish_time BETWEEN #{begintime} AND #{endTime}
+           </if>
+       </trim>
+    </sql>
+
+    <sql id="orderSql">
+        ORDER BY
+        <choose>
+            <when test="order=='title'">
+             TITLE
+            </when>
+            <when test="order=='publishTime'">
+                publish_time
+            </when>
+            <when test="order=='auId'">
+                au_id
+            </when>
+            <otherwise>
+                ARID
+            </otherwise>
+        </choose>
+
+        <if test="sort=='DESC'">
+            DESC
+        </if>
+        <if test="sort==null or sort=='ASC'">
+            ASC
+        </if>
+    </sql>
+
+    <sql id="pageSql">
+        <bind name="firstLine" value="(pageNo-1)*pageSize"/>
+        limit #{firstLine},#{pageSize}
+    </sql>
+
+    <select id="findAdv" resultMap="articleList1">
+        <include refid="sql1"/>
+        <include refid="whereSql"/>
+        <include refid="orderSql"/>
+        <include refid="pageSql"/>
+    </select>
 </mapper>

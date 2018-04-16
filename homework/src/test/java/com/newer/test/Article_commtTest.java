@@ -16,7 +16,7 @@ public class Article_commtTest {
         Article_commtMapper dao=sqlSession.getMapper(Article_commtMapper.class);
         List<Article_commt>list=dao.findAll();
         list.forEach((Article_commt act)->{
-            System.out.println(act.getId()+":"+act.getCommt()+" 评论者id:"+act.getAu_id()+" 评论者name:"+act.getAuthor().getName()+" 文章name:"+act.getArticle().getTitle()+" 文章作者name:"+act.getArticle().getArticleAuthor().getName()+" 文章作者id:"+act.getArticle().getArticleAuthor().getAuid());
+            System.out.println(act.getId()+":"+act.getCommt()+" 评论者id:"+act.getAuthor().getAuid()+" 评论者name:"+act.getAuthor().getName()+" 文章name:"+act.getArticle().getTitle()+" 文章作者name:"+act.getArticle().getArticleAuthor().getName()+" 文章作者id:"+act.getArticle().getArticleAuthor().getAuid());
         });
     }
 }
